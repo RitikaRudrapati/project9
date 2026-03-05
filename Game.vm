@@ -16,7 +16,7 @@ function Game.new 0
     pop this 2
     push pointer 0
     return
-function Game.run 0
+function Game.run 1
     push argument 0
     pop pointer 0
 label Game_0
@@ -24,10 +24,18 @@ label Game_0
     neg
     not
     if-goto Game_1
+    call Keyboard.keyPressed 0
+    pop local 0
+    push local 0
+    push constant 0
+    gt
+    not
+    if-goto Game_3
     call Screen.clearScreen 0
     pop temp 0
     push this 0
-    call Bucket.update 1
+    push local 0
+    call Bucket.update 2
     pop temp 0
     push this 1
     push this 0
@@ -39,6 +47,31 @@ label Game_0
     push this 1
     call Apple.draw 1
     pop temp 0
+    push constant 5
+    call Sys.wait 1
+    pop temp 0
+    goto Game_2
+label Game_3
+    call Screen.clearScreen 0
+    pop temp 0
+    push this 0
+    push constant 0
+    call Bucket.update 2
+    pop temp 0
+    push this 1
+    push this 0
+    call Apple.update 2
+    pop temp 0
+    push this 0
+    call Bucket.draw 1
+    pop temp 0
+    push this 1
+    call Apple.draw 1
+    pop temp 0
+    push constant 5
+    call Sys.wait 1
+    pop temp 0
+label Game_2
     push constant 0
     push constant 0
     call Output.moveCursor 2
@@ -46,9 +79,6 @@ label Game_0
     push this 1
     call Apple.getScore 1
     call Output.printInt 1
-    pop temp 0
-    push constant 30
-    call Sys.wait 1
     pop temp 0
     goto Game_0
 label Game_1

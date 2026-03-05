@@ -14,7 +14,7 @@ class Apple {
     }
 
     method void fall() {
-        let y = y + 5;
+        let y = y + 10;
 
         if (y > 200) {
             let y = 200;
@@ -50,7 +50,7 @@ class Apple {
 
     method void reset() {
         let x = 200;
-        let y = 0;
+        let y = 10;
         return;
     }
 

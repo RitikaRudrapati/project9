@@ -12,22 +12,31 @@ class Game {
     }
 
     method void run() {
-
+        var int key;
         while (true) {
-
-            do Screen.clearScreen();
-
-            do bucket.update();        // move bucket with keyboard
-            do apple.update(bucket);   // apple falls + catch logic
-
-            do bucket.draw();          // draw bucket
-            do apple.draw();           // draw apple
-
+            let key = Keyboard.keyPressed();
+            if (key > 0) {
+                do Screen.clearScreen();
+                do bucket.update(key);
+                do apple.update(bucket);
+                do bucket.draw();
+                do apple.draw();
+                do Sys.wait(5);
+            }
+            else {
+                do Screen.clearScreen();
+                do bucket.update(0); // No key pressed, update bucket without movement
+                do apple.update(bucket);
+                do bucket.draw();
+                do apple.draw();
+                do Sys.wait(5);
+            }
+            
             // display score
             do Output.moveCursor(0,0);
             do Output.printInt(apple.getScore());
 
-            do Sys.wait(30);           // control game speed
+            //do Sys.wait(10);           // control game speed
         }
 
         return;

@@ -10,12 +10,10 @@ function Bucket.new 0
     pop this 2
     push pointer 0
     return
-function Bucket.keyboardMovement 1
+function Bucket.keyboardMovement 0
     push argument 0
     pop pointer 0
-    call Keyboard.keyPressed 0
-    pop local 0
-    push local 0
+    push argument 1
     push constant 130
     eq
     not
@@ -26,7 +24,7 @@ function Bucket.keyboardMovement 1
     goto Bucket_0
 label Bucket_1
 label Bucket_0
-    push local 0
+    push argument 1
     push constant 132
     eq
     not
@@ -43,7 +41,7 @@ function Bucket.moveLeft 0
     push argument 0
     pop pointer 0
     push this 0
-    push constant 5
+    push constant 15
     sub
     pop this 0
     push this 0
@@ -62,7 +60,7 @@ function Bucket.moveRight 0
     push argument 0
     pop pointer 0
     push this 0
-    push constant 5
+    push constant 15
     add
     pop this 0
     push this 0
@@ -84,6 +82,10 @@ label Bucket_6
 function Bucket.draw 0
     push argument 0
     pop pointer 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
     push this 0
     push this 1
     push this 0
@@ -115,16 +117,19 @@ function Bucket.update 0
     push argument 0
     pop pointer 0
     push pointer 0
-    call Bucket.keyboardMovement 1
+    push argument 1
+    call Bucket.keyboardMovement 2
     pop temp 0
     push constant 0
     return
 function Bucket.reset 0
     push argument 0
     pop pointer 0
-    push constant 60
+    push constant 90
     pop this 0
-    push constant 180
+    push constant 150
     pop this 1
+    push constant 50
+    pop this 2
     push constant 0
     return

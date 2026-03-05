@@ -16,7 +16,7 @@ function Apple.fall 0
     push argument 0
     pop pointer 0
     push this 1
-    push constant 5
+    push constant 10
     add
     pop this 1
     push this 1
@@ -108,7 +108,7 @@ function Apple.reset 0
     pop pointer 0
     push constant 200
     pop this 0
-    push constant 0
+    push constant 10
     pop this 1
     push constant 0
     return

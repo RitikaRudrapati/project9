@@ -11,24 +11,31 @@ class Bucket {
         return this;
     }
 
-    method void keyboardMovement(){
-        var int key;
+    method void keyboardMovement(int key) {
 
-        let key = Keyboard.keyPressed();
+        /*
+        var int key;
+        while (key = 0) {
+            let key = Keyboard.keyPressed();
+        }
+
+        do Output.moveCursor(20,20);
+        do Output.printInt(key);
+            */
 
         if (key = 130) {
             do moveLeft();
         }
-        
+
         if (key = 132) {
             do moveRight();
         }
+        
 
         return;
-    }
-
+}
     method void moveLeft(){
-        let x = x - 5; 
+        let x = x - 15; 
 
         if (x < 0) {
                 let x = 0;
@@ -39,7 +46,7 @@ class Bucket {
     }
 
     method void moveRight(){
-        let x = x + 5;
+        let x = x + 15;
 
             if (x > 512 - width) {   // screen width safety
                 let x = 512 - width;
@@ -49,8 +56,10 @@ class Bucket {
     }
 
     method void draw(){
+        do Screen.setColor(true);
         do Screen.drawRectangle(x, y, x + width, y + 4);
-        
+
+
         return;
     }
 
@@ -66,14 +75,17 @@ class Bucket {
         return width;
     }
 
-    method void update() {
-        do keyboardMovement(); // Update bucket position based on keyboard input
+    method void update(int key) {
+        
+        
+        do keyboardMovement(key); // Update bucket position based on keyboard input
         return;
     }
 
     method void reset() {
-        let x = 60; // Reset x to a starting position
-        let y = 180; // Reset y to a fixed position near the bottom of the screen
+        let x = 90; // Reset x to a starting position
+        let y = 150; // Reset y to a fixed position near the bottom of the screen
+        let width = 50; // Reset width to a fixed value
         return;
     }    
 
