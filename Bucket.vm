@@ -1,0 +1,130 @@
+function Bucket.new 0
+    push constant 3
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push argument 2
+    pop this 2
+    push pointer 0
+    return
+function Bucket.keyboardMovement 1
+    push argument 0
+    pop pointer 0
+    call Keyboard.keyPressed 0
+    pop local 0
+    push local 0
+    push constant 130
+    eq
+    not
+    if-goto Bucket_1
+    push pointer 0
+    call Bucket.moveLeft 1
+    pop temp 0
+    goto Bucket_0
+label Bucket_1
+label Bucket_0
+    push local 0
+    push constant 132
+    eq
+    not
+    if-goto Bucket_3
+    push pointer 0
+    call Bucket.moveRight 1
+    pop temp 0
+    goto Bucket_2
+label Bucket_3
+label Bucket_2
+    push constant 0
+    return
+function Bucket.moveLeft 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 5
+    sub
+    pop this 0
+    push this 0
+    push constant 0
+    lt
+    not
+    if-goto Bucket_5
+    push constant 0
+    pop this 0
+    goto Bucket_4
+label Bucket_5
+label Bucket_4
+    push constant 0
+    return
+function Bucket.moveRight 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 5
+    add
+    pop this 0
+    push this 0
+    push constant 512
+    gt
+    push this 2
+    sub
+    not
+    if-goto Bucket_7
+    push constant 512
+    push this 2
+    sub
+    pop this 0
+    goto Bucket_6
+label Bucket_7
+label Bucket_6
+    push constant 0
+    return
+function Bucket.draw 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push this 1
+    push this 0
+    push this 2
+    add
+    push this 1
+    push constant 4
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return
+function Bucket.getX 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Bucket.getY 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Bucket.getWidth 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Bucket.update 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Bucket.keyboardMovement 1
+    pop temp 0
+    push constant 0
+    return
+function Bucket.reset 0
+    push argument 0
+    pop pointer 0
+    push constant 60
+    pop this 0
+    push constant 180
+    pop this 1
+    push constant 0
+    return

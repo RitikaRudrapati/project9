@@ -1,0 +1,80 @@
+class Bucket {
+
+    field int x, y;
+    field int width; 
+
+    constructor Bucket new(int xSize, int ySize, int w) {
+        //change these numbers 
+        let x = xSize;
+        let y = ySize;
+        let width = w;
+        return this;
+    }
+
+    method void keyboardMovement(){
+        var int key;
+
+        let key = Keyboard.keyPressed();
+
+        if (key = 130) {
+            do moveLeft();
+        }
+        
+        if (key = 132) {
+            do moveRight();
+        }
+
+        return;
+    }
+
+    method void moveLeft(){
+        let x = x - 5; 
+
+        if (x < 0) {
+                let x = 0;
+            }
+
+            return; 
+        
+    }
+
+    method void moveRight(){
+        let x = x + 5;
+
+            if (x > 512 - width) {   // screen width safety
+                let x = 512 - width;
+            }
+
+            return;
+    }
+
+    method void draw(){
+        do Screen.drawRectangle(x, y, x + width, y + 4);
+        
+        return;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    method int getY() {
+        return y;
+    }
+
+    method int getWidth() {
+        return width;
+    }
+
+    method void update() {
+        do keyboardMovement(); // Update bucket position based on keyboard input
+        return;
+    }
+
+    method void reset() {
+        let x = 60; // Reset x to a starting position
+        let y = 180; // Reset y to a fixed position near the bottom of the screen
+        return;
+    }    
+
+}   

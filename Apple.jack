@@ -1,0 +1,77 @@
+class Apple {
+
+    field int x;
+    field int y;
+    field int size;
+    field int score;
+
+    constructor Apple new(int xPos, int yPos, int s) {
+        let x = xPos;
+        let y = yPos;
+        let size = s;
+        let score = 0;
+        return this;
+    }
+
+    method void fall() {
+        let y = y + 5;
+
+        if (y > 200) {
+            let y = 200;
+        }
+
+        return;
+    }
+
+    method void draw() {
+        do Screen.drawCircle(x, y, size);
+        return;
+    }
+
+    method boolean isCaught(Bucket bucket) {
+
+        if (~(y < bucket.getY()) & ~(y > bucket.getY() + 4)) {
+            if (~(x < bucket.getX()) & ~(x > bucket.getX() + bucket.getWidth())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    method boolean isMissed() {
+
+        if (~(y < 200)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    method void reset() {
+        let x = 200;
+        let y = 0;
+        return;
+    }
+
+    method void update(Bucket bucket) {
+
+        do fall();
+
+        if (isCaught(bucket)) {
+            let score = score + 1;
+            do reset();
+        } else {
+            if (isMissed()) {
+                do reset();
+            }
+        }
+
+        return;
+    }
+
+    method int getScore() {
+        return score;
+    }
+
+}

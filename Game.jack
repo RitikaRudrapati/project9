@@ -1,9 +1,34 @@
-class Main {
-    function void main() {
-        var Game g;
+class Game {
 
-        let game = Game.new();
-        do game.run();
+    field Bucket bucket;
+    field Apple apple;
+    field int score;
+
+    constructor Game new() {
+        let bucket = Bucket.new(60, 180, 40);
+        let apple = Apple.new(200, 0, 5);
+        let score = 0;
+        return this;
+    }
+
+    method void run() {
+
+        while (true) {
+
+            do Screen.clearScreen();
+
+            do bucket.update();        // move bucket with keyboard
+            do apple.update(bucket);   // apple falls + catch logic
+
+            do bucket.draw();          // draw bucket
+            do apple.draw();           // draw apple
+
+            // display score
+            do Output.moveCursor(0,0);
+            do Output.printInt(apple.getScore());
+
+            do Sys.wait(30);           // control game speed
+        }
 
         return;
     }
