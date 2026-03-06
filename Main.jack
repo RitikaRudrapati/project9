@@ -1,3 +1,10 @@
+/**
+    * Main.jack
+    * 
+    * This is the main class that initializes the game and starts the game loop.
+    * It calls its run method to start the game.
+    */
+
 class Main {
     function void main() {
         var Game game;

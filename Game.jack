@@ -1,44 +1,59 @@
+/**
+    * Game.jack
+    * 
+    * This class implements the main game loop for a simple apple-catching game. 
+    * It initializes the bucket and apple objects, and continuously updates their positions based on user input. 
+    * The game runs indefinitely until the program is terminated.
+    *
+**/
 class Game {
 
+    //intialize felds for bucket, apple, and score
     field Bucket bucket;
     field Apple apple;
-    field int score;
 
     constructor Game new() {
+        //create set sizes and positions for bucket and apple
         let bucket = Bucket.new(60, 180, 40);
         let apple = Apple.new(200, 0, 5);
-        let score = 0;
         return this;
     }
 
+    //main game loop
     method void run() {
         var int key;
+        //infinte loop to keep game running
         while (true) {
             let key = Keyboard.keyPressed();
+
+            //if a key is pressed, update bucket position based on key and redraw screen, still continue to update apple 
             if (key > 0) {
                 do Screen.clearScreen();
+
                 do bucket.update(key);
                 do apple.update(bucket);
+
                 do bucket.draw();
                 do apple.draw();
-                do Sys.wait(5);
+
+                //change this number to change the pace of the game 
+                do Sys.wait(20);
             }
+            //if no key is pressed, still update apple position and redraw screen
             else {
                 do Screen.clearScreen();
+
                 do bucket.update(0); // No key pressed, update bucket without movement
                 do apple.update(bucket);
+
                 do bucket.draw();
                 do apple.draw();
-                do Sys.wait(5);
-            }
-            
-            // display score
-            do Output.moveCursor(0,0);
-            do Output.printInt(apple.getScore());
 
-            //do Sys.wait(10);           // control game speed
+                do Sys.wait(20);
+            } 
+
         }
 
         return;
-    }
-}
+    
+}}

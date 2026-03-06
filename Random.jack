@@ -1,3 +1,12 @@
+/**
+    * Random.jack
+    * 
+    * This class implements a simple method for creating pseudo-random numbers .
+    * It provides methods to generate the next random number and to generate a random number within a specified range.
+    * Credit: https://github.com/mpatajac/jack-labyrinth/blob/master/Random.jack
+    *
+**/
+
 class Random {
 	field int number, a, m;
 

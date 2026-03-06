@@ -1,5 +1,5 @@
 function Apple.new 0
-    push constant 4
+    push constant 5
     call Memory.alloc 1
     pop pointer 0
     push argument 0
@@ -10,13 +10,16 @@ function Apple.new 0
     pop this 2
     push constant 0
     pop this 3
+    push constant 1234
+    call Random.new 1
+    pop this 4
     push pointer 0
     return
 function Apple.fall 0
     push argument 0
     pop pointer 0
     push this 1
-    push constant 10
+    push constant 5
     add
     pop this 1
     push this 1
@@ -106,7 +109,10 @@ label Apple_6
 function Apple.reset 0
     push argument 0
     pop pointer 0
-    push constant 200
+    push this 4
+    push constant 20
+    push constant 300
+    call Random.randRange 3
     pop this 0
     push constant 10
     pop this 1

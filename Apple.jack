@@ -1,20 +1,32 @@
+/**
+    * Apple.jack
+    * 
+    * This class represents the apple in the game. 
+    * It has fields for the apple's position, size, score, and a random number generator.
+    * The apple falls down the screen and can be caught by the bucket. 
+**/
 class Apple {
 
+    //fields for apple position, size, score, and random number generator
     field int x;
     field int y;
     field int size;
     field int score;
+    field Random rand;
 
     constructor Apple new(int xPos, int yPos, int s) {
+        //create set sizes and positions for apple that come from the user
         let x = xPos;
         let y = yPos;
         let size = s;
         let score = 0;
+        let rand = Random.new(1234);
         return this;
     }
 
+    //the apple will always fall by 5 pixels each time 
     method void fall() {
-        let y = y + 10;
+        let y = y + 5;
 
         if (y > 200) {
             let y = 200;
@@ -23,11 +35,14 @@ class Apple {
         return;
     }
 
+    //method to draw apple on screen as a circle
     method void draw() {
         do Screen.drawCircle(x, y, size);
         return;
     }
 
+    //method to check if apple is caught by bucket
+    // checks if apple's position overlaps with bucket's position
     method boolean isCaught(Bucket bucket) {
 
         if (~(y < bucket.getY()) & ~(y > bucket.getY() + 4)) {
@@ -48,12 +63,14 @@ class Apple {
         return false;
     }
 
+    //generate random postions for the apple to fall from each time update is called 
     method void reset() {
-        let x = 200;
+        let x = rand.randRange(20, 300);
         let y = 10;
         return;
     }
 
+    //update the score
     method void update(Bucket bucket) {
 
         do fall();

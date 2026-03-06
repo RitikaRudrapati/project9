@@ -1,10 +1,18 @@
+/**
+    * Bucket.jack
+    * 
+    * This class implements the bucket that the player controls in the game.
+    * It includes methods for moving the bucket left and right based on keyboard input
+    * It includes getter methods for the bucket's position and width
+    *
+**/
 class Bucket {
 
     field int x, y;
     field int width; 
 
     constructor Bucket new(int xSize, int ySize, int w) {
-        //change these numbers 
+        //create set sizes and positions for bucket 
         let x = xSize;
         let y = ySize;
         let width = w;
@@ -13,16 +21,7 @@ class Bucket {
 
     method void keyboardMovement(int key) {
 
-        /*
-        var int key;
-        while (key = 0) {
-            let key = Keyboard.keyPressed();
-        }
-
-        do Output.moveCursor(20,20);
-        do Output.printInt(key);
-            */
-
+        //keyboard codes for left and right arrow keys
         if (key = 130) {
             do moveLeft();
         }
@@ -30,11 +29,14 @@ class Bucket {
         if (key = 132) {
             do moveRight();
         }
-        
 
         return;
 }
+
+    //methods to move bucket left and right, with checks to prevent moving off screen
+    
     method void moveLeft(){
+        
         let x = x - 15; 
 
         if (x < 0) {
@@ -48,21 +50,21 @@ class Bucket {
     method void moveRight(){
         let x = x + 15;
 
-            if (x > 512 - width) {   // screen width safety
+            if (x > 512 - width) {  
                 let x = 512 - width;
             }
 
             return;
     }
 
+    //method to draw bucket on screen
     method void draw(){
         do Screen.setColor(true);
         do Screen.drawRectangle(x, y, x + width, y + 4);
-
-
         return;
     }
 
+    //getter functions for x, y, width of bucket
     method int getX() {
         return x;
     }
@@ -75,17 +77,18 @@ class Bucket {
         return width;
     }
 
+    //update function to update bucket position based on keyboard input, called in the main class
     method void update(int key) {
         
         
-        do keyboardMovement(key); // Update bucket position based on keyboard input
+        do keyboardMovement(key); 
         return;
     }
 
     method void reset() {
-        let x = 90; // Reset x to a starting position
-        let y = 150; // Reset y to a fixed position near the bottom of the screen
-        let width = 50; // Reset width to a fixed value
+        let x = 90; 
+        let y = 150; 
+        let width = 50; 
         return;
     }    
 
